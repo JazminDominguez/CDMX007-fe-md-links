@@ -1,10 +1,11 @@
-const mdLinks = require('../');
+const mdLinks = require('./app.js');
 
 
 describe('mdLinks', () => {
 
-  it('should...', () => {
-    console.log('FIX ME!');
+  it('should transform a relative path into absolute path', () => {
+   expect(relativeToAbsolute)
+    // console.log('FIX ME!');
   });
 
 });
