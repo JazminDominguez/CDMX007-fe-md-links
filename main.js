@@ -5,6 +5,7 @@ const path = require('path');
 const fs = require('fs');
 const markdownLinkExtractor = require('markdown-link-extractor');
 const fetch = require('node-fetch');
+const chalk = require('chalk');
 
 //variables globales
 let fileS = process.argv[2];
@@ -27,7 +28,7 @@ function validateExistingFile(rute) {
         console.log("Usage: " + __filename + " path/to/directory");
         process.exit(-1);
 
-    } else {
+    } else  {
         return rute
 
     }
@@ -38,7 +39,7 @@ function validateExistingFile(rute) {
 let markdown = fs.readFileSync(rute).toString();
 let links = markdownLinkExtractor(markdown);
 
-if (fileExtName === '.md') {
+if (fileExtName === '.md'&& !validate) {
     links.forEach(function (link) {
         console.log(`URL: ${link}`);
     })
@@ -54,11 +55,11 @@ if (validate) {
                 let ok = res.ok;
                 let status = res.status;
                 let statusText = res.statusText;
-                console.log(` ${URL} ${ok} ${status} ${statusText}`);
+                console.log(URL, ok, chalk.blue(status), chalk.yellow(statusText));
             });
     })
 } else {
-    console.log('Debe escribir --validate o --stats o --validate --stats');
+    console.log(' Para acceder al detalle debe escribir --validate o --stats o --validate --stats');
 }
 
 /* stats

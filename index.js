@@ -2,7 +2,7 @@
 //   // ...
 // };
 
-//const mdlinks = require('./app');
+const mdlinks = require('./main');
 
 
 const parseData = () =>console.log('saludos');
@@ -11,5 +11,5 @@ const filepath = mdlinks.relativeToAbsolute(mdlinks.documentPath);
 mdlinks.read(filepath, parseData);
 
 
-const mdlinks = require('./files.js');
 mdlinks.validateExistingFile(mdlinks.rute);
+
