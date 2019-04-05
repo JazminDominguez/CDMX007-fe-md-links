@@ -1,18 +1,18 @@
-//ejecuta el comando señalado en la linea de comando
-//const args = require('minimist')(process.argv.slice(2));
-//args['name'] //tutorial link: https://flaviocopes.com/node-cli-args/
 
 
 // da lectura al archivo
 let fs = require('fs');
 const path = require('path');
+//let chalk = require('chalk');
+let processargv = (process.argv[2])
 
-function read() {
-    fs.readFile(documentPath, 'utf-8', (err, data) => {
+function read(filepath, callback) {
+    fs.readFile(filepath, 'utf-8', (err, data) => {
         if (err) {
             console.log('error: ', err);
         } else {
             console.log(data);
+            callback(data)
         }
     })
 };
@@ -21,17 +21,35 @@ function read() {
 //identifica si el path es absoluto o relativo
 //si es relativo lo vuelve absoluto y lo lee
 
-let documentPath = ('./README.md')
-let documentPathVerification = path.isAbsolute(documentPath);
 
-function relativeToAbsolute(){
-if (documentPathVerification ===! true){
-    path.resolve(documentPath)
-  console.log('ruta de archivo ahora es absoluta');
-  read()
-} else{
-    console.log('no se pudo procesar')
-}}
+//identifica si se ingresó documento a analizar, sino manda error
+3
 
 
-module.exports = documentPath, documentPathVerification, relativeToAbsolute();
+function validateExistingFile(processargv){
+    if (process.argv.length <= 2) {
+        console.log("Usage: " + __filename + " path/to/directory");
+        process.exit(-1);
+    
+    } else{
+        return processargv
+        
+    }
+}
+
+let documentPath = (validateExistingFile(processargv))
+
+function relativeToAbsolute(filepath){
+    let documentPathVerification = path.isAbsolute(filepath);
+
+    if (documentPathVerification ===! true){
+       return path.resolve(filepath)
+    console.log('ruta de archivo ahora es absoluta');
+    read()
+    } else{
+        return filepath
+        console.log('no se pudo procesar')
+    }
+}
+
+module.exports = { documentPath, relativeToAbsolute, read,processargv,validateExistingFile,}

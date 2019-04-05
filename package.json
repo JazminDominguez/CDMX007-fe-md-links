@@ -5,6 +5,15 @@
     "jest": "^24.5.0"
   },
   "dependencies": {
-    "minimist": "^1.2.0"
+    "install": "^0.12.2",
+    "markdown-link-extractor": "^1.2.0",
+    "minimist": "^1.2.0",
+    "node-fetch": "^2.3.0"
+  },
+  "keywords": [],
+  "author name": "Jazmin Dominguez",
+  "license": "",
+  "bin": {
+    "md-links": "./files.js"
   }
 }
