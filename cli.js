@@ -1,8 +1,6 @@
-
-
+#!/usr/bin/env node
+const mdl = require('./index.js');
+const chalk = require('chalk');
 //grab provided args
-const [,f, ... args] = process.argv
 
-//print hello world
-//const index = requiere('./app')
 

@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 
 //requiring  modules
 const path = require('path');
@@ -9,10 +8,21 @@ const chalk = require('chalk');
 
 //variables globales
 let fileS = process.argv[2];
-let anyFile = path.resolve(fileS);
-let rute = path.normalize(anyFile)
+//let anyFile = path.resolve(fileS);
+//let rute = path.normalize(anyFile)
 let fileExtName = path.extname(rute);
 
+
+function validateExistingFile(fileS) {
+    if (process.argv.length <= 2) {
+        console.log("Usage: " + __filename + " path/to/directory");
+        process.exit(-1);
+
+    } else  {
+        return fileS
+
+    }
+}validateExistingFile()
 
 const grab = (flag) => {
     let index = process.argv.indexOf(flag);
@@ -23,16 +33,6 @@ const validate = grab('--validate');
 //const stats = grab('--stats');
 
 
-function validateExistingFile(rute) {
-    if (process.argv.length <= 2) {
-        console.log("Usage: " + __filename + " path/to/directory");
-        process.exit(-1);
-
-    } else  {
-        return rute
-
-    }
-}
 
 
 //dentro de current working directory
@@ -55,7 +55,7 @@ if (validate) {
                 let ok = res.ok;
                 let status = res.status;
                 let statusText = res.statusText;
-                console.log(URL, ok, chalk.blue(status), chalk.yellow(statusText));
+                console.log(URL, ok, chalk.blue(status), chalk.green(statusText));
             });
     })
 } else {
